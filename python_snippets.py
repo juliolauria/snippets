@@ -8,4 +8,4 @@ startTime = datetime.now()
 
 # code here
 
-print("tempo de execução:" round((datetime.now() - startTime)*60), 2)
+print("tempo de execução: " + str(datetime.now() - startTime).split('.')[0])
