@@ -1,0 +1,2 @@
+# Command to ignore SSL verification (MBB Jarvis Project Issue with GitLab)
+git config --global http.sslVerify "false"
