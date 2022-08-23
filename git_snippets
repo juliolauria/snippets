@@ -1,2 +1,26 @@
 # Command to ignore SSL verification (MBB Jarvis Project Issue with GitLab)
 git config --global http.sslVerify "false"
+
+# GitLab
+# Verify ssh key details
+ssh -T git@gitlab
+
+# A more complex way to verify the ssh key details
+ssh -Tvvv git@gitlab.com
+
+# Create an ssh keygen
+ssh-keygen -t ed25519
+
+# Get info of the generated ssh key
+# Copy content and insert in GitLab / Profile / SSH
+cat ~/.ssh/id_ed25519.pub
+
+# Push local changes to server
+# git push -u -f <remote_alias> <branch_name>
+# E.g.: git push -u -f origin local-folder
+
+# List files from branch
+git ls-files
+
+# Create a new branch and change to it
+git checkout -b <branch_name>
