@@ -24,3 +24,6 @@ git ls-files
 
 # Create a new branch and change to it
 git checkout -b <branch_name>
+
+# List of commands and configurations
+git config --list
