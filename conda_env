@@ -6,6 +6,18 @@ conda create --name 'env_name' python='python_version'
 # Activate the environment
 conda activate 'env_name'
 
+# Remove a conda environment 
+conda env remove --name bio-env
+
+# List all conda environments 
+conda env list
+
+# List all packages from a environment 
+conda list
+
+# Install pip
+conda install pip
+
 # Install libraries using the requirements.txt file
 pip install -r requirements.txt
 
