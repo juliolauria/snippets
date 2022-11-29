@@ -27,3 +27,16 @@ git checkout -b <branch_name>
 
 # List of commands and configurations
 git config --list
+
+# Set Global username and email
+git config --global user.name "juvince"
+git config --global user.email "juvince@americas.corpdir.net"
+
+# Add Safe directory
+git config --global --add safe.directory 'C:/Users/UserName/project-name'
+
+# Add remote Github/GitLab repo address
+git remote add origin https://gitlab.br154.corpintra.net/producao/jarvis/otimizacao
+
+# List of branches
+git branch --list
