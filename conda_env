@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ### ipykernel ###
 
 # Installing a kernel
-ipykernel install --user --name 'env_name' --display-name 'kernel_name' 
+python -m ipykernel install --user --name 'env_name' --display-name 'kernel_name' 
 
 # List all installed kernels
 jupyter kernelspec list
