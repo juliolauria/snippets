@@ -2,24 +2,25 @@
 
 # Create a new conda environment with specific python version
 conda create --name 'env_name' python='python_version'
+conda create -n 'env_name'
 
 # Activate the environment
 conda activate 'env_name'
-
-# Remove a conda environment 
-conda env remove --name bio-env
-
-# List all conda environments 
-conda env list
-
-# List all packages from a environment 
-conda list
 
 # Install pip
 conda install pip
 
 # Install libraries using the requirements.txt file
 pip install -r requirements.txt
+
+# List all packages from a environment 
+conda list
+
+# List all conda environments 
+conda env list
+
+# Remove a conda environment 
+conda env remove --name bio-env
 
 ### ipykernel ###
 
