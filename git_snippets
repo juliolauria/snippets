@@ -40,3 +40,20 @@ git remote add origin https://gitlab.br154.corpintra.net/producao/jarvis/otimiza
 
 # List of branches
 git branch --list
+
+### GitHub ###
+
+# Create a GitHub repo
+gh repo create # [<name>] [flags]
+
+# First push
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:alexpchin/<reponame>.git
+git push -u origin master
+
+# Remove a GitHub repo
+gh repo delete # [<repository>] [flags]
+
