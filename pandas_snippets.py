@@ -7,6 +7,6 @@ pd.options.mode.chained_assignment = None
 df.insert(1, 'Col', list_of_values) # Insert list_of_values with name 'Col' in second position
 
 # Create bins based on intervals ([pd.cut)
-bins = [-999, 11, 12, 24, 999]
-labels = ['A', 'B', 'C', 'D']
-df['ContractDuration'] = pd.cut(df['col'], bins=bins, labels=labels)
+bins = [0, 29, 39, 55, 150]
+labels = ['18-29', '30-39', '40-55', '56+']
+df['AgeRange'] = pd.cut(df['Age'], bins=bins, labels=labels)
