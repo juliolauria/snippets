@@ -110,5 +110,118 @@ plt.bar(x=df_sales['OrderYear'], height=df_sales['GrossRevenue'])
 # Display the plot
 plt.show()
 
+### Delta lake
 
+# Load a file into a dataframe
+df = spark.read.load('/data/mydata.csv', format='csv', header=True)
 
+# Save the dataframe as a delta table
+delta_table_path = "/delta/mydata"
+df.write.format("delta").save(delta_table_path)
+
+# Replace existing Delta Lake table with the contents of a dataframe. Overwrite method.
+new_df.write.format("delta").mode("overwrite").save(delta_table_path)
+
+# Add new rows to a table
+new_rows_df.write.format("delta").mode("append").save(delta_table_path)
+
+# Conditional updates:
+from delta.tables import *
+from pyspark.sql.functions import *
+
+# Create a deltaTable object
+deltaTable = DeltaTable.forPath(spark, delta_table_path)
+
+# Update the table (reduce price of accessories by 10%)
+deltaTable.update(
+    condition = "Category == 'Accessories'",
+    set = { "Price": "Price * 0.9" })
+
+# Time travel:
+df = spark.read.format("delta").option("versionAsOf", 0).load(delta_table_path)
+
+df = spark.read.format("delta").option("timestampAsOf", '2022-01-01').load(delta_table_path)
+
+# Catalog tables
+
+# Save a dataframe as a managed table
+df.write.format("delta").saveAsTable("MyManagedTable")
+
+## specify a path option to save as an external table
+df.write.format("delta").option("path", "/mydata").saveAsTable("MyExternalTable")
+
+# Using SQL
+spark.sql("CREATE TABLE MyExternalTable USING DELTA LOCATION '/mydata'")
+
+%sql
+CREATE TABLE MyExternalTable # Can also use CREATE TABLE IF NOT EXISTS or CREATE OR REPLACE TABLE
+USING DELTA
+LOCATION '/mydata'
+
+# Creating table with a defined schema
+%sql
+CREATE TABLE ManagedSalesOrders
+(
+    Orderid INT NOT NULL,
+    OrderDate TIMESTAMP NOT NULL,
+    CustomerName STRING,
+    SalesTotal FLOAT NOT NULL
+)
+USING DELTA
+
+# DeltaTableBuilder API
+from delta.tables import *
+
+# can also use createIfNotExists or createOrReplace
+DeltaTable.create(spark) \ 
+  .tableName("default.ManagedProducts") \
+  .addColumn("Productid", "INT") \
+  .addColumn("ProductName", "STRING") \
+  .addColumn("Category", "STRING") \
+  .addColumn("Price", "FLOAT") \
+  .execute()
+
+# Streaming data
+
+from pyspark.sql.types import *
+from pyspark.sql.functions import *
+
+# Load a streaming dataframe from the Delta Table
+stream_df = spark.readStream.format("delta") \
+    .option("ignoreChanges", "true") \
+    .load("/delta/internetorders")
+
+# Now you can process the streaming data in the dataframe
+# for example, show it:
+stream_df.show()
+
+# Delta lake Streaming Sink (Destination)
+
+from pyspark.sql.types import *
+from pyspark.sql.functions import *
+
+# Create a stream that reads JSON data from a folder
+streamFolder = '/streamingdata/'
+jsonSchema = StructType([
+    StructField("device", StringType(), False),
+    StructField("status", StringType(), False)
+])
+stream_df = spark.readStream.schema(jsonSchema).option("maxFilesPerTrigger", 1).json(inputPath)
+
+# Write the stream to a delta table
+table_path = '/delta/devicetable'
+checkpoint_path = '/delta/checkpoint'
+delta_stream = stream_df.writeStream.format("delta").option("checkpointLocation", checkpoint_path).start(table_path)
+
+# Query the stream data from Data lake
+%sql
+
+CREATE TABLE DeviceTable
+USING DELTA
+LOCATION '/delta/devicetable';
+
+SELECT device, status
+FROM DeviceTable;
+
+# Stop the stream
+delta_stream.stop()
