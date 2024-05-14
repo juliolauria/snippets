@@ -57,3 +57,26 @@ git push -u origin master
 # Remove a GitHub repo
 gh repo delete # [<repository>] [flags]
 
+# --- Blue Walnut ---
+
+# Git compare files between two branches 
+git diff branch-new branch-compare: path/to/script
+# Usually branch-compare will be main
+# And branch-compare will be the branch that you are working
+
+# ex:
+git diff feature/BW-655-llm-language-selector main: ecm1/scripts/main_automated.py
+
+# ==================================================
+# Remove local branches already merged to main
+# ==================================================
+
+# First, switch to the main branch
+git checkout main
+
+# Fetch the latest changes from the remote and prune
+git fetch --prune
+
+# Delete local branches that are no longer on the remote
+# linux
+git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -n 1 git branch -d
