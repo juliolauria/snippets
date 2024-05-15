@@ -50,3 +50,7 @@ breakpoint()
 python -m venv venv
 
 .venv\Scripts\activate
+
+# get variables, methods and values from an unknown object
+vars(obj)
+dir(obj) # or simply dir()
