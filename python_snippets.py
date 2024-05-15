@@ -34,6 +34,14 @@ with open("temp/dev_masterdata/masterdata_cvt.json", 'r') as json_file:
 
 # Save Master Data
 import json
+# company_id = website.code.lower() # 'e.g., fc'
 company_id = 'cl'
 with open(f"temp/dev_masterdata/masterdata_{company_id}.json", 'w') as json_file:
     json.dump(master_data, json_file)
+    
+# Debug
+import pdb
+pdb.set_trace()
+
+# Exactly the same as pdb.set_trace:
+breakpoint() 
