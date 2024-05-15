@@ -45,3 +45,8 @@ pdb.set_trace()
 
 # Exactly the same as pdb.set_trace:
 breakpoint() 
+
+# virtual environment
+python -m venv venv
+
+.venv\Scripts\activate
