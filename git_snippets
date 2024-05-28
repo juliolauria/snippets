@@ -80,3 +80,20 @@ git fetch --prune
 # Delete local branches that are no longer on the remote
 # linux
 git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -n 1 git branch -d
+
+# ========================================================
+# Update feature branch with a updated version of main
+# ========================================================
+
+git checkout your-feature-branch
+
+git fetch origin
+
+git merge origin/main
+
+# ---
+
+# Discard changes in branch before checking out
+git reset --hard
+
+git checkout -- <file_path_1.ext> <example/tools/openai.py>
