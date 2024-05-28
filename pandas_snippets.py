@@ -10,3 +10,8 @@ df.insert(1, 'Col', list_of_values) # Insert list_of_values with name 'Col' in s
 bins = [0, 29, 39, 55, 150]
 labels = ['18-29', '30-39', '40-55', '56+']
 df['AgeRange'] = pd.cut(df['Age'], bins=bins, labels=labels)
+
+# select only specific dtypes from dataframe.
+# Useful for describe
+df.select_dtypes(include=['object'])
+df.select_dtypes('O').describe()
