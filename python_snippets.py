@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 #####
@@ -9,6 +10,7 @@ startTime = datetime.now()
 # code here
 
 print("Execution time: " + str(datetime.now() - startTime).split('.')[0])
+print(f"Execution time for {os.path.basename(__file__)}: {str(datetime.now() - startTime).split('.')[0]}")
 
 # Ignore warnings
 
