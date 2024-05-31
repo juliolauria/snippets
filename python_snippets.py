@@ -56,3 +56,6 @@ python -m venv venv
 # get variables, methods and values from an unknown object
 vars(obj)
 dir(obj) # or simply dir()
+
+# Refresh print: Do not print new line and overwrite previous message
+print(f"Current page: {current_page}", end='\r')
