@@ -15,3 +15,9 @@ df['AgeRange'] = pd.cut(df['Age'], bins=bins, labels=labels)
 # Useful for describe
 df.select_dtypes(include=['object'])
 df.select_dtypes('O').describe()
+
+# Create a combined column with the values appended in a list
+df.groupby('category', as_index=False)['product_id'].apply(list)
+
+# Get one row per product using explode
+df.explode('product_id')
