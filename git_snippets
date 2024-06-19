@@ -97,3 +97,25 @@ git merge origin/main
 git reset --hard
 
 git checkout -- <file_path_1.ext> <example/tools/openai.py>
+
+# Stash - save changes temporarely
+# https://www.atlassian.com/git/tutorials/saving-changes/git-stash#:~:text=The%20git%20stash%20command%20takes,for%20commit%3A%20modified%3A%20index.
+git stash
+
+# Delete a branch
+git branch -d <branch-name>
+
+# List remote branches
+git branch -r # list remote branches
+git branch -a # list all branches, remote and local
+# To navigage: 
+# Space: Next page
+# Enter: Next line
+# Press 'Q' on <END> to quit
+
+# Create local branch from origin
+git checkout -b local_branch_name origin/remote_branch_name
+
+# Inserting main updates from remote to feature branch
+git pull origin main
+
