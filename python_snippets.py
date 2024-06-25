@@ -49,8 +49,9 @@ pdb.set_trace()
 breakpoint() 
 
 # virtual environment
-python -m venv venv
+python -m venv .venv
 
+# Activate env
 .venv\Scripts\activate
 
 # get variables, methods and values from an unknown object
