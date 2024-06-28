@@ -64,3 +64,7 @@ print(f"Current page: {current_page}", end='\r')
 # Get package version
 from importlib.metadata import version
 version('library_name')
+
+# Upgrade library
+pip install openai --upgrade
+pip install openai -U
