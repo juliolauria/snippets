@@ -119,3 +119,7 @@ git checkout -b local_branch_name origin/remote_branch_name
 # Inserting main updates from remote to feature branch
 git pull origin main
 
+# Merge feature branch B to your current branch a
+git  checkout A
+git pull origin A
+git merge B
