@@ -123,3 +123,8 @@ git pull origin main
 git  checkout A
 git pull origin A
 git merge B
+
+# Check branches that were merged in main
+git branch --merge
+git branch -d <branch-name> # delete one branch
+git branch -d $(git branch --merged) # automatically deletes all branches that were merged
