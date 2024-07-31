@@ -127,4 +127,11 @@ git merge B
 # Check branches that were merged in main
 git branch --merge
 git branch -d <branch-name> # delete one branch
-git branch -d $(git branch --merged) # automatically deletes all branches that were merged
+# git branch -d $(git branch --merged) # automatically deletes all branches that were merged
+# Best to run this commands separatelly
+
+# Git push active local branch to remote
+git push origin HEAD
+
+# Add file to gitignore directly from terminal
+echo "filename" >> .gitignore
