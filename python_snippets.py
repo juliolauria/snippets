@@ -68,3 +68,8 @@ version('library_name')
 # Upgrade library
 pip install openai --upgrade
 pip install openai -U
+
+# Ignore user warnings or deprecation warning
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=DeprecationWarning)
